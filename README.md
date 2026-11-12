@@ -20,9 +20,10 @@ The package is a Git dependency, not a Hex package:
  tag: "v0.3.0", runtime: false, targets: :x86_64}
 ```
 
-The standalone release must be published before this tag can be used. Until then,
-use a checked-out source and build its artifact explicitly. Nerves Gate supports
-`NERVES_GATE_SIMULATOR_SYSTEM_PATH=/absolute/path/to/nerves_system_nerves_gate_simulator`.
+The tag includes the manifest for the published artifact. For system development,
+Nerves Gate supports
+`NERVES_GATE_SIMULATOR_SYSTEM_PATH=/absolute/path/to/nerves_system_nerves_gate_simulator`;
+build the checked-out system's artifact explicitly after changing its inputs.
 
 ## Build
 
@@ -49,7 +50,11 @@ additional source obligations.
 3. Review and commit the generated `checksum.exs` before tagging. Git consumers
    require this manifest in their source checkout, not just as a release asset.
 4. Push `vX.Y.Z` only with release authorization. The workflow creates a draft.
-5. Review licensing, source availability and the draft assets, then publish manually.
+5. Verify that draft assets match the checksum committed in the tag and that
+   release notes match the changelog. Rebuilds can produce different bytes under
+   the same fingerprint; if needed, use the matching, verified pre-tag CI artifact
+   in the unpublished draft. Never rewrite tags or replace published assets.
+6. Review licensing and source availability, then publish manually.
 
 No Hex publishing or automatic public release is configured. Never replace a
 published version. This package versions independently of firmware and Buildroot.

@@ -70,5 +70,5 @@ this system does not simulate them.
 
 In Nerves Gate, `mix setup` downloads a published system and `mix dev` runs it;
 see [development](https://github.com/sid2baker/nerves_gate/blob/main/docs/development.md)
-and its coverage limits. Before the first release, build the artifact explicitly. Disks are
+and its coverage limits. System development requires an explicit artifact build. Disks are
 disposable files. Never write this target to a physical disk.
